@@ -2,6 +2,9 @@ import Profiles from './Prifiles/Profile';
 import Statistics from './Statistics/Statistics';
 import user from './user.json';
 import data from './data.json';
+import friends from './friends.json';
+import Friends from './Friends/Freinds';
+
 // console.log(users);
 
 export const App = () => {
@@ -14,7 +17,7 @@ export const App = () => {
         alignItems: 'center',
         fontSize: 40,
         color: '#010101',
-        flexWrap: 'wrap',
+        flexWrap: 'nowrap',
         flexDirection: 'column',
       }}
     >
@@ -27,6 +30,7 @@ export const App = () => {
       />
       <Statistics title="Upload statss" stats={data} />
       {/* <Statistics stats={data} /> */}
+      <Friends friends={friends} />
     </div>
   );
 };
