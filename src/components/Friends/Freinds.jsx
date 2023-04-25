@@ -1,7 +1,6 @@
 // import PT from 'prop-types';
 
 export default function Friends({ friends }) {
-  // console.log(prop);
   const friendRender = friends.map(({ avatar, name, isOnline, id }) => {
     return (
       <li key={id} className="item">
