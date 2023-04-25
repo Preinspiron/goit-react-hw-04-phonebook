@@ -18,7 +18,7 @@ export default function Statistics({ title, stats }) {
   });
   return (
     <section className="Statistics">
-      <h2 className="title">{title || 'Upload statssss'}</h2>
+      <h2 className="title">{title}</h2>
 
       <UlRender>{dataRender}</UlRender>
     </section>
