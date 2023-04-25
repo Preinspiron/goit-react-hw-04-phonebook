@@ -1,9 +1,9 @@
 import Profiles from '../Prifiles/Profile';
 import Statistics from '../Statistics/Statistics';
-import user from '../data/user.json';
-import data from '../data/data.json';
-import transactions from '../data/transactions.json';
-import friends from '../data/friends.json';
+import user from '../../data/user.json';
+import data from '../../data/data.json';
+import transactions from '../../data/transactions.json';
+import friends from '../../data/friends.json';
 import Friends from '../Friends/Freinds';
 import { Container } from './App.styled.js';
 import { Transactions } from '../Transactions/Transactions';
