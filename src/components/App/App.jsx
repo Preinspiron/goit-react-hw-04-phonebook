@@ -6,7 +6,7 @@ import transactions from '../transactions.json';
 import friends from '../friends.json';
 import Friends from '../Friends/Freinds';
 import { Container } from './App.styled.js';
-import { Transactions } from 'Components/Transactions/Transactions';
+import { Transactions } from '../Transactions/Transactions';
 
 // console.log(users);
 
