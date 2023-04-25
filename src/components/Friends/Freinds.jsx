@@ -1,8 +1,6 @@
 // import PT from 'prop-types';
 import sass from './Friends.module.scss';
 import clsx from 'clsx';
-// console.log(item);
-// console.log(css);
 export default function Friends({ friends }) {
   const friendRender = friends.map(({ avatar, name, isOnline, id }) => {
     return (
