@@ -8,7 +8,7 @@ export const Table = styled.table`
   tbody {
     text-align: center;
   }
-  ,
+
   tbody tr:nth-child(2n) {
     background-color: grey;
   }

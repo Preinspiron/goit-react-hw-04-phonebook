@@ -1,4 +1,4 @@
-import { Table, TableDecs, Th } from './Transactions.styled';
+import { Table, TableDecs } from './Transactions.styled';
 
 export const Transactions = props => {
   console.log(props.items);
