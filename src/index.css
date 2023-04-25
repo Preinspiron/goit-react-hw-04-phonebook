@@ -1,5 +1,4 @@
 @import-normalize;
-/* bring in normalize.css styles */
 
 body {
   margin: 0;
@@ -36,13 +35,7 @@ span {
   /* align-content: center; */
 }
 
-.friend-list .item {
-  display: flex;
-  align-items: center;
-  /* flex-direction: column; */
 
-
-}
 
 .online {
   width: 10px;

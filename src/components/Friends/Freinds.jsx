@@ -1,5 +1,7 @@
 // import PT from 'prop-types';
+import './friends.module.css';
 
+// console.log(css);
 export default function Friends({ friends }) {
   const friendRender = friends.map(({ avatar, name, isOnline, id }) => {
     return (
