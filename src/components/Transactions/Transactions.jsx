@@ -1,8 +1,8 @@
 import { Table, TableDecs } from './Transactions.styled';
+import PT from 'prop-types';
 
-export const Transactions = props => {
-  console.log(props.items);
-  const tableData = props.items.map(el => (
+export const Transactions = ({ items }) => {
+  const tableData = items.map(el => (
     <tr key={el.id}>
       <td>{el.type}</td>
       <td>{el.amount}</td>
@@ -22,4 +22,15 @@ export const Transactions = props => {
       <tbody>{tableData}</tbody>
     </Table>
   );
+};
+
+Transactions.propTypes = {
+  items: PT.arrayOf(
+    PT.shape({
+      id: PT.string.isRequired,
+      type: PT.string.isRequired,
+      amount: PT.string.isRequired,
+      currency: PT.string.isRequired,
+    })
+  ),
 };

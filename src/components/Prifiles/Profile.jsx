@@ -1,4 +1,4 @@
-// import PT from 'prop-types';
+import PT from 'prop-types';
 
 import { Profiled, Stats } from './Profiles.styled';
 export default function Profile({ username, tag, location, avatar, stats }) {
@@ -28,3 +28,10 @@ export default function Profile({ username, tag, location, avatar, stats }) {
     </Profiled>
   );
 }
+Profile.propTypes = {
+  username: PT.string.isRequired,
+  tag: PT.string.isRequired,
+  location: PT.string.isRequired,
+  avatar: PT.string.isRequired,
+  stats: PT.any.isRequired,
+};

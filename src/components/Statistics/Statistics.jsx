@@ -1,4 +1,5 @@
 // import PT from 'prop-types';
+import PT from 'prop-types';
 import { LiRender, UlRender } from './Statistics.styled';
 
 // import saas from './Statistics.module.scss';
@@ -23,3 +24,14 @@ export default function Statistics({ title, stats }) {
     </section>
   );
 }
+
+Statistics.propTypes = {
+  title: PT.string,
+  stats: PT.arrayOf(
+    PT.shape({
+      id: PT.string.isRequired,
+      label: PT.string.isRequired,
+      percentage: PT.number.isRequired,
+    })
+  ),
+};

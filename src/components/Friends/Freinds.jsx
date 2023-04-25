@@ -1,4 +1,4 @@
-// import PT from 'prop-types';
+import PT from 'prop-types';
 import sass from './Friends.module.scss';
 import clsx from 'clsx';
 export default function Friends({ friends }) {
@@ -23,3 +23,14 @@ export default function Friends({ friends }) {
     </section>
   );
 }
+
+Friends.propTypes = {
+  friends: PT.arrayOf(
+    PT.shape({
+      avatar: PT.string.isRequired,
+      name: PT.string.isRequired,
+      isOnline: PT.bool.isRequired,
+      id: PT.number.isRequired,
+    })
+  ),
+};
