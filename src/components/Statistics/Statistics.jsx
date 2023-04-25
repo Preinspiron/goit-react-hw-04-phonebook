@@ -1,21 +1,25 @@
 // import PT from 'prop-types';
+import { LiRender, UlRender } from './Statistics.styled';
 
+// import saas from './Statistics.module.scss';
+// console.log(scss);
 export default function Statistics({ title, stats }) {
   console.log(stats);
   const dataRender = stats.map(({ id, label, percentage }) => {
+    console.log(label);
+
     return (
-      <li key={id} className="item">
+      <LiRender key={id} label={label.slice(1)}>
         <span className="label">{label}</span>
         <span className="percentage"> {percentage}%</span>
-      </li>
+      </LiRender>
     );
   });
-  console.log(dataRender);
   return (
-    <section className="statistics">
-      <h2 className="title">{title || 'Upload stats'}</h2>
+    <section className="Statistics">
+      <h2 className="title">{title || 'Upload statssss'}</h2>
 
-      <ul className="stat-list">{dataRender}</ul>
+      <UlRender>{dataRender}</UlRender>
     </section>
   );
 }

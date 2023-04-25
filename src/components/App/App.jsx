@@ -6,7 +6,7 @@ import transactions from '../transactions.json';
 import friends from '../friends.json';
 import Friends from '../Friends/Freinds';
 import { Container } from './App.styled.js';
-import { Transactions } from 'components/Transactions/Transactions';
+import { Transactions } from 'Components/Transactions/Transactions';
 
 // console.log(users);
 
@@ -20,7 +20,7 @@ export const App = () => {
         avatar={user.avatar}
         stats={user.stats}
       />
-      <Statistics title="Upload statss" stats={data} />
+      <Statistics title="Upload stats" stats={data} />
       {/* <Statistics stats={data} /> */}
       <Friends friends={friends} />
       <Transactions items={transactions} />

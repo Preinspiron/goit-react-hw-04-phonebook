@@ -1,12 +1,13 @@
 // import PT from 'prop-types';
-import './friends.module.css';
-
+import sass from './Friends.module.scss';
+import clsx from 'clsx';
+// console.log(item);
 // console.log(css);
 export default function Friends({ friends }) {
   const friendRender = friends.map(({ avatar, name, isOnline, id }) => {
     return (
-      <li key={id} className="item">
-        <span className={isOnline ? 'online' : 'offline'}></span>
+      <li key={id} className={sass.item}>
+        <span className={clsx(isOnline ? 'online' : 'offline')}></span>
         <img
           className="avatar"
           src={avatar}
@@ -14,7 +15,7 @@ export default function Friends({ friends }) {
           width="48"
           height="48"
         />
-        <p className="name">{name}</p>
+        <p className={sass.name}>{name}</p>
       </li>
     );
   });

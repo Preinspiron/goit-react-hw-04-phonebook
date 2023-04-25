@@ -1,7 +1,9 @@
 // import PT from 'prop-types';
+
+import { Profiled, Stats } from './Profiles.styled';
 export default function Profile({ username, tag, location, avatar, stats }) {
   return (
-    <div className="profile">
+    <Profiled>
       <div className="description">
         <img src={avatar} alt="User avatar" className="avatar" />
         <p name="name">{username}</p>
@@ -9,7 +11,7 @@ export default function Profile({ username, tag, location, avatar, stats }) {
         <p className="location">{location}</p>
       </div>
 
-      <ul className="stats">
+      <Stats>
         <li>
           <span className="label">Followers</span>
           <span className="quantity">{stats.followers}</span>
@@ -22,7 +24,7 @@ export default function Profile({ username, tag, location, avatar, stats }) {
           <span className="label">Likes</span>
           <span className="quantity">{stats.likes}</span>
         </li>
-      </ul>
-    </div>
+      </Stats>
+    </Profiled>
   );
 }
