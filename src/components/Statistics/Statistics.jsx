@@ -1,14 +1,12 @@
 // import PT from 'prop-types';
 import PT from 'prop-types';
-import { LiRender, UlRender } from './Statistics.styled';
+import { LiRender, UlRender, Section } from './Statistics.styled';
 
 // import saas from './Statistics.module.scss';
 // console.log(scss);
 export default function Statistics({ title, stats }) {
   console.log(stats);
   const dataRender = stats.map(({ id, label, percentage }) => {
-    console.log(label);
-
     return (
       <LiRender key={id} label={label.slice(1)}>
         <span className="label">{label}</span>
@@ -17,11 +15,11 @@ export default function Statistics({ title, stats }) {
     );
   });
   return (
-    <section className="Statistics">
+    <Section className="Statistics">
       <h2 className="title">{title}</h2>
 
       <UlRender>{dataRender}</UlRender>
-    </section>
+    </Section>
   );
 }
 

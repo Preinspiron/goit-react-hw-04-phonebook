@@ -5,6 +5,7 @@ export const Profiled = styled.div`
   background-color: grey;
   padding: 30px;
   justify-content: center;
+  width: 100%;
 
   .description {
     display: flex;

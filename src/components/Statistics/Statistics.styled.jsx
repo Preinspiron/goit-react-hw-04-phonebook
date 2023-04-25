@@ -23,3 +23,9 @@ export const UlRender = styled.ul`
     text-align: center;
   }
 `;
+
+export const Section = styled.section`
+  text-align: center;
+  background-color: grey;
+  margin-top: 10px;
+`;
