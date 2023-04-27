@@ -1,29 +1,24 @@
-import Profiles from '../Prifiles/Profile';
-import Statistics from '../Statistics/Statistics';
-import user from '../../data/user.json';
-import data from '../../data/data.json';
-import transactions from '../../data/transactions.json';
-import friends from '../../data/friends.json';
-import Friends from '../Friends/Freinds';
+import { Component } from 'react';
 import { Container } from './App.styled.js';
-import { Transactions } from '../Transactions/Transactions';
+import Phonebook from '../Phonebook';
+// import { nanoid } from 'nanoid';
 
-// console.log(users);
+export class App extends Component {
+  state = {
+    contacts: [],
+    name: '',
+  };
 
-export const App = () => {
-  return (
-    <Container>
-      <Profiles
-        username={user.username}
-        tag={user.tag}
-        location={user.location}
-        avatar={user.avatar}
-        stats={user.stats}
-      />
-      <Statistics title="Statistic" stats={data} />
-      {/* <Statistics stats={data} /> */}
-      <Friends friends={friends} />
-      <Transactions items={transactions} />
-    </Container>
-  );
-};
+  handleSubmit = e => {
+    e.preventDefault();
+    // this.setState(prev => console.log(prev));
+  };
+
+  render() {
+    return (
+      <Container>
+        <Phonebook contact={this.state} handleSubmit={this.handleSubmit} />
+      </Container>
+    );
+  }
+}
