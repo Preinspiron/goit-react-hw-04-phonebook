@@ -31,7 +31,13 @@ export const FeedbackSection = styled.div`
 export const Contact = styled.ul`
   background-color: white;
   display: flex;
+  flex-direction: column;
   gap: 30px;
   padding: 30px;
   width: 100%;
+`;
+
+export const Input = styled.input`
+  height: auto;
+  font-size: 32px;
 `;

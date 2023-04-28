@@ -1,15 +1,12 @@
 // import PT from 'prop-types';
 
 import { FeedbackSection } from './Feedback.styled';
-import { Contacts } from './Contacts';
 
-const Phonebook = ({ contact, handleSubmit }) => {
+const Phonebook = ({ contacts, handleSubmit, handleChange }) => {
+  const { name } = contacts;
   return (
     <FeedbackSection>
-      <form
-        action="
-      "
-      >
+      <form onSubmit={handleSubmit}>
         <h1>Phone Book</h1>
         <input
           style={{ fontSize: '34px' }}
@@ -19,13 +16,23 @@ const Phonebook = ({ contact, handleSubmit }) => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
+          value={name}
+          onChange={handleChange}
         />
-        <button type="button" className="btn" onSubmit={handleSubmit}>
+        <input
+          style={{ fontSize: '34px' }}
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          // value={contacts.nubmer}
+          onChange={handleChange}
+        />
+        <button type="submit" className="btn">
           Add contact
         </button>
       </form>
-
-      <Contacts />
     </FeedbackSection>
   );
 };

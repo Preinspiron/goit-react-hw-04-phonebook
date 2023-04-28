@@ -12,4 +12,5 @@ export const Container = styled.div`
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  outline: 1px solid black;
 `;
