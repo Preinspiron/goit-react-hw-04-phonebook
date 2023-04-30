@@ -1,14 +1,15 @@
 import React from 'react';
-import { Contact } from './Feedback.styled';
+import PT from 'prop-types';
+import { Contact } from './Phonebook.styled';
+import './style.scss';
 
 export const Contacts = ({
   handleFilter,
   handleDelete,
-  contacts: { contacts, filter },
+  contacts: { filter },
 }) => {
   return (
     <Contact>
-      <h2>Contacts</h2>
       <ul>
         {handleFilter(filter).map(({ name, number, id }) => (
           <li key={id}>
@@ -25,4 +26,6 @@ export const Contacts = ({
   );
 };
 
-// contact.map(item => console.log(item));
+Contact.propTypes = {
+  contacts: PT.arrayOf,
+};

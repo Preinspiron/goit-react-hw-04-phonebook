@@ -13,7 +13,7 @@ export const FeedbackSection = styled.div`
 
   .btn {
     width: 200px;
-    height: 100px;
+    height: auto;
     font-size: 24px;
   }
   .description {
@@ -40,4 +40,7 @@ export const Contact = styled.ul`
 export const Input = styled.input`
   height: auto;
   font-size: 32px;
+  padding-le
+  width:50%;
+
 `;

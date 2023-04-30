@@ -1,5 +1,5 @@
 export { default } from './Phonebook';
-export { FeedbackSection } from './Feedback.styled';
+export { FeedbackSection } from './Phonebook.styled';
 export { Contacts } from './Contacts';
 export { Filter } from './Filter';
 

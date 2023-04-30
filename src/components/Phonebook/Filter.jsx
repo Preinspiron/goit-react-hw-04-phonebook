@@ -1,4 +1,4 @@
-import { Input } from './Feedback.styled';
+import { Input } from './Phonebook.styled';
 export const Filter = ({ handleFilter, handleChange, filter }) => {
   return (
     <Input

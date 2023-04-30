@@ -1,47 +1,109 @@
-// import PT from 'prop-types';
+import { FeedbackSection } from './Phonebook.styled';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import styled from 'styled-components';
+import PT from 'prop-types';
 
-import { FeedbackSection } from './Feedback.styled';
+const FormStyled = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-right: auto;
+  gap: 30px;
+  width: 100%;
 
-const Phonebook = ({ contacts, handleSubmit, handleChange }) => {
-  const { name } = contacts;
+  input {
+    width: 100%;
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  .radio {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .btn {
+    height: auto;
+    width: 100%;
+  }
+  & .error {
+    color: tomato;
+    font-size: 34px;
+  }
+  label {
+    width: 100%;
+    height: 160px;
+  }
+`;
+
+const schema = Yup.object().shape({
+  name: Yup.string('No letters')
+    .min(2, 'Too Short!')
+    .max(10, 'Too Long!')
+    .required('Required'),
+  number: Yup.number('Invalid number').required('Required'),
+});
+
+const Phonebook = ({ addContact, handleFormData }) => {
+  const handleSubmit = ({ name, number, data }, { resetForm }) => {
+    addContact({ name, number });
+
+    resetForm();
+  };
+
+  const handleChange = e => {
+    handleFormData(e.target.value);
+  };
+
   return (
     <FeedbackSection>
-      <form onSubmit={handleSubmit}>
-        <h1>Phone Book</h1>
-        <input
-          style={{ fontSize: '34px' }}
-          placeholder="Enter a phone number"
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          value={name}
-          onChange={handleChange}
-        />
-        <input
-          style={{ fontSize: '34px' }}
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          // value={contacts.nubmer}
-          onChange={handleChange}
-        />
-        <button type="submit" className="btn">
-          Add contact
-        </button>
-      </form>
+      <Formik
+        initialValues={{
+          name: '',
+          number: '',
+          data: true,
+        }}
+        onSubmit={handleSubmit}
+        validationSchema={schema}
+      >
+        <FormStyled onChange={handleChange}>
+          <div className="radio" role="group" aria-labelledby="my-radio-group">
+            <label>
+              default
+              <Field type="radio" name="data" value="true" />
+            </label>
+            <label>
+              empty
+              <Field type="radio" name="data" value="false" />
+            </label>
+          </div>
+
+          <label htmlFor="name">
+            Name*
+            <Field id="name" name="name" placeholder="James ..." />
+            <ErrorMessage component="span" name="name" className="error" />
+          </label>
+          <label htmlFor="number">
+            Number*
+            <Field
+              id="number"
+              type="text"
+              name="number"
+              placeholder="+38 (095) 888 88 88"
+            />
+            <ErrorMessage name="number" component="span" className="error" />
+          </label>
+          <button type="submit" className="btn">
+            Add contact
+          </button>
+        </FormStyled>
+      </Formik>
     </FeedbackSection>
   );
 };
 
 export default Phonebook;
-/* Profile.propTypes = {
-  username: PT.string.isRequired,
-  tag: PT.string.isRequired,
-  location: PT.string.isRequired,
-  avatar: PT.string.isRequired,
-  stats: PT.any.isRequired,
-}; */
+
+Phonebook.propTypes = {
+  contacts: PT.arrayOf,
+};

@@ -9,30 +9,23 @@ export class App extends Component {
     contacts: this.props.contacts,
     filter: '',
   };
+  handleChange = e => this.setState({ filter: e.target.value });
 
-  handleChange = e => {
-    // console.dir(e.currentTarget);
-    const { value, name } = e.currentTarget;
-    this.setState({ [name]: value });
-  };
-  handleSubmit = e => {
-    e.preventDefault();
-    const { value } = e.target.name;
-
-    if (this.dublicateCheck(value)) {
-      alert(`${value} is alredy existing`);
-      return e.currentTarget.reset();
-    }
-    // const { value, name } = e.currentTarget;
-    this.setState(prev => ({
+  addContact = value => {
+    if (this.dublicateCheck(value.name)) return alert(`${value.name} exist`);
+    this.setState(({ contacts }) => ({
       contacts: [
-        ...prev.contacts,
-        { name: prev.name, number: prev.number, id: nanoid() },
+        ...contacts,
+        {
+          ...value,
+          id: nanoid(),
+        },
       ],
     }));
-    e.currentTarget.reset();
   };
-
+  handleFormData = data => {
+    this.setState({ contacts: data === 'true' ? this.props.contacts : [] });
+  };
   handleDelete = id => {
     this.setState(prev => ({
       contacts: prev.contacts.filter(el => el.id !== id),
@@ -54,13 +47,15 @@ export class App extends Component {
     const { contacts } = this.state;
     return (
       <Container>
+        <h1>Phonebook</h1>
         <Phonebook
+          handleFormData={this.handleFormData}
           contacts={contacts}
-          handleSubmit={this.handleSubmit}
+          addContact={this.addContact}
           handleChange={this.handleChange}
         />
+        <h2>Contacts</h2>
         <Filter
-          contacts={contacts}
           handleFilter={this.handleFilter}
           handleChange={this.handleChange}
         />
