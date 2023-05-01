@@ -1,5 +1,5 @@
 import React from 'react';
-import PT from 'prop-types';
+import PropTypes from 'prop-types';
 import { Contact } from './Phonebook.styled';
 import './style.scss';
 
@@ -22,5 +22,7 @@ export const Contacts = ({ handleFilter, handleDelete, filter }) => {
 };
 
 Contacts.propTypes = {
-  filter: PT.string,
+  filter: PropTypes.string,
+  handleDelete: PropTypes.func,
+  handleFilter: PropTypes.func,
 };

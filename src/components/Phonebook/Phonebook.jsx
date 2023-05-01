@@ -2,7 +2,7 @@ import { FeedbackSection } from './Phonebook.styled';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
-import PT from 'prop-types';
+import PropTypes from 'prop-types';
 
 const FormStyled = styled(Form)`
   display: flex;
@@ -105,6 +105,6 @@ const Phonebook = ({ addContact, handleFormData }) => {
 export default Phonebook;
 
 Phonebook.propTypes = {
-  name: PT.string,
-  number: PT.number,
+  addContact: PropTypes.func,
+  handleFormData: PropTypes.func,
 };
