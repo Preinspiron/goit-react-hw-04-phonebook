@@ -28,9 +28,9 @@ export class App extends Component {
     }));
   };
   handleFormData = data => {
-    this.setState(({ contacts }) => ({
-      contacts: data === 'true' ? this.props.contacts : [...contacts],
-    }));
+    // this.setState(({ contacts }) => ({
+    // contacts: data === 'true' ? this.props.contacts : [],
+    // }));
   };
   handleDelete = id => {
     this.setState(prev => ({
