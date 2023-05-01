@@ -50,7 +50,7 @@ export class App extends Component {
     return this.state.contacts.some(item => item.name === name);
   }
   render() {
-    const { contacts } = this.state;
+    const { filter } = this.state;
     return (
       <Container>
         <h1>Phonebook</h1>
@@ -61,12 +61,12 @@ export class App extends Component {
         />
         <h2>Contacts</h2>
         <Filter
-          filter={this.state.filter}
+          filter={filter}
           handleFilter={this.handleFilter}
           handleChange={this.handleChange}
         />
         <Contacts
-          filter={this.state.filter}
+          filter={filter}
           handleDelete={this.handleDelete}
           handleFilter={this.handleFilter}
         />
