@@ -45,7 +45,7 @@ const schema = Yup.object().shape({
 });
 
 const Phonebook = ({ addContact, handleFormData }) => {
-  const handleSubmit = ({ name, number, data }, { resetForm }) => {
+  const handleSubmit = ({ name, number }, { resetForm }) => {
     addContact({ name, number });
 
     resetForm();
@@ -61,7 +61,7 @@ const Phonebook = ({ addContact, handleFormData }) => {
         initialValues={{
           name: '',
           number: '',
-          data: true,
+          data: 'true',
         }}
         onSubmit={handleSubmit}
         validationSchema={schema}
@@ -105,5 +105,6 @@ const Phonebook = ({ addContact, handleFormData }) => {
 export default Phonebook;
 
 Phonebook.propTypes = {
-  contacts: PT.arrayOf,
+  name: PT.string,
+  number: PT.number,
 };

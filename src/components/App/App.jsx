@@ -9,7 +9,11 @@ export class App extends Component {
     contacts: this.props.contacts,
     filter: '',
   };
-  handleChange = e => this.setState({ filter: e.target.value });
+  handleChange = e => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    this.setState({ [name]: value });
+  };
 
   addContact = value => {
     if (this.dublicateCheck(value.name)) return alert(`${value.name} exist`);
@@ -24,7 +28,9 @@ export class App extends Component {
     }));
   };
   handleFormData = data => {
-    this.setState({ contacts: data === 'true' ? this.props.contacts : [] });
+    this.setState(({ contacts }) => ({
+      contacts: data === 'true' ? this.props.contacts : [...contacts],
+    }));
   };
   handleDelete = id => {
     this.setState(prev => ({
@@ -50,17 +56,17 @@ export class App extends Component {
         <h1>Phonebook</h1>
         <Phonebook
           handleFormData={this.handleFormData}
-          contacts={contacts}
           addContact={this.addContact}
           handleChange={this.handleChange}
         />
         <h2>Contacts</h2>
         <Filter
+          filter={this.state.filter}
           handleFilter={this.handleFilter}
           handleChange={this.handleChange}
         />
         <Contacts
-          contacts={this.state}
+          filter={this.state.filter}
           handleDelete={this.handleDelete}
           handleFilter={this.handleFilter}
         />
