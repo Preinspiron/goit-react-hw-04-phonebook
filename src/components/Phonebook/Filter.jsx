@@ -14,6 +14,5 @@ export const Filter = ({ handleChange, filter }) => {
 };
 Filter.propTypes = {
   filter: PropTypes.string,
-  handleDelete: PropTypes.func,
-  handleFilter: PropTypes.func,
+  handleChange: PropTypes.func,
 };
