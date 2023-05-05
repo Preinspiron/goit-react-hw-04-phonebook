@@ -14,6 +14,15 @@ export class App extends Component {
     console.log(name, value);
     this.setState({ [name]: value });
   };
+  componentDidMount(prev) {
+    const local = localStorage.getItem('contacts');
+    if (local) this.setState({ contacts: JSON.parse(local) });
+  }
+  componentDidUpdate(prevProp, prevState) {
+    console.log('update');
+    console.log(prevProp, prevState);
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
 
   addContact = value => {
     if (this.dublicateCheck(value.name)) return alert(`${value.name} exist`);
