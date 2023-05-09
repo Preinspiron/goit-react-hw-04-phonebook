@@ -1,85 +1,74 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from './App.styled.js';
 import { nanoid } from 'nanoid';
-import Phonebook, { Filter, Contacts, INIT } from '../Phonebook';
+import Phonebook, { Filter, Contacts } from '../Phonebook';
+import { INIT } from '../Phonebook/index';
 
-export class App extends Component {
-  static defaultProps = INIT;
-  state = {
-    contacts: this.props.contacts,
-    filter: '',
-  };
-  handleChange = e => {
-    const { name, value } = e.target;
-    console.log(name, value);
-    this.setState({ [name]: value });
-  };
-  componentDidMount(prev) {
-    const local = localStorage.getItem('contacts');
-    if (local) this.setState({ contacts: JSON.parse(local) });
-  }
-  componentDidUpdate(prevProp, prevState) {
-    console.log('update');
-    console.log(prevProp, prevState);
-    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-  }
+export const App = () => {
+  let DEF_STATE = localStorage.getItem('contacts');
+  let DEF_PARSED = JSON.parse(DEF_STATE);
+  const [contacts, setContacts] = useState(DEF_PARSED ?? INIT.contacts);
+  const [filter, setFilter] = useState('');
+  console.log(contacts);
 
-  addContact = value => {
-    if (this.dublicateCheck(value.name)) return alert(`${value.name} exist`);
-    this.setState(({ contacts }) => ({
-      contacts: [
-        ...contacts,
-        {
-          ...value,
-          id: nanoid(),
-        },
-      ],
-    }));
+  // useEffect(() => {
+  //   const local = localStorage.getItem('contacts');
+  //   if (local) setContacts([...JSON.parse(local)]);
+  // }, []);
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
+
+  const handleChange = e => {
+    const { value } = e.target;
+    setFilter(value);
   };
-  handleFormData = data => {
+
+  const addContact = value => {
+    if (dublicateCheck(value.name)) return alert(`${value.name} exist`);
+    setContacts(prev => [...prev, { ...value, id: nanoid() }]);
+  };
+
+  const handleFormData = data => {
     // this.setState(({ contacts }) => ({
     // contacts: data === 'true' ? this.props.contacts : [],
     // }));
   };
-  handleDelete = id => {
-    this.setState(prev => ({
-      contacts: prev.contacts.filter(el => el.id !== id),
-    }));
+  const handleDelete = id => {
+    setContacts([...contacts.filter(el => el.id !== id)]);
   };
 
-  handleFilter = query => {
-    const { filter } = this.state;
-    if (!filter) return this.state.contacts;
-    return this.state.contacts.filter(({ name }) => {
-      return name.toLowerCase().includes(query.toLowerCase());
-    });
-  };
-
-  dublicateCheck(name) {
-    return this.state.contacts.some(item => item.name === name);
-  }
-  render() {
-    const { filter } = this.state;
-    return (
-      <Container>
-        <h1>Phonebook</h1>
-        <Phonebook
-          handleFormData={this.handleFormData}
-          addContact={this.addContact}
-          handleChange={this.handleChange}
-        />
-        <h2>Contacts</h2>
-        <Filter
-          filter={filter}
-          handleFilter={this.handleFilter}
-          handleChange={this.handleChange}
-        />
-        <Contacts
-          filter={filter}
-          handleDelete={this.handleDelete}
-          handleFilter={this.handleFilter}
-        />
-      </Container>
+  const handleFilter = query => {
+    // if (!filter) return contacts;
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(query.toLowerCase())
     );
-  }
-}
+  };
+
+  const dublicateCheck = name => {
+    return contacts.some(item => item.name === name);
+  };
+
+  return (
+    <Container>
+      <h1>Phonebook</h1>
+      <Phonebook
+        handleFormData={handleFormData}
+        addContact={addContact}
+        handleChange={handleChange}
+      />
+      <h2>Contacts</h2>
+      <Filter
+        filter={filter}
+        handleFilter={handleFilter}
+        handleChange={handleChange}
+      />
+      <Contacts
+        filter={filter}
+        handleDelete={handleDelete}
+        handleFilter={handleFilter}
+      />
+    </Container>
+  );
+};

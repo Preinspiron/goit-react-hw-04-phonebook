@@ -5,6 +5,7 @@ import './style.scss';
 
 export const Contacts = ({ handleFilter, handleDelete, filter }) => {
   console.log(filter);
+  console.log(handleFilter);
   return (
     <Contact>
       {handleFilter(filter).map(({ name, number, id }) => (
