@@ -36,7 +36,7 @@ export const App = () => {
     // }));
   };
   const handleDelete = id => {
-    setContacts([...contacts.filter(el => el.id !== id)]);
+    setContacts(pr => [...pr.filter(el => el.id !== id)]);
   };
 
   const handleFilter = query => {
